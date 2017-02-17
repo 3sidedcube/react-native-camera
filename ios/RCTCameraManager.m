@@ -34,17 +34,17 @@ RCT_EXPORT_MODULE();
 #if !(TARGET_IPHONE_SIMULATOR)
     self.previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
     self.previewLayer.needsDisplayOnBoundsChange = YES;
-  #endif
-
-  if(!self.camera){
-    self.camera = [[RCTCamera alloc] initWithManager:self bridge:self.bridge];
-  }
-  return self.camera;
+#endif
+    
+    if(!self.camera){
+        self.camera = [[RCTCamera alloc] initWithManager:self bridge:self.bridge];
+    }
+    return self.camera;
 }
 
 - (NSDictionary *)constantsToExport
 {
-
+    
     NSMutableDictionary * runtimeBarcodeTypes = [NSMutableDictionary dictionary];
     [runtimeBarcodeTypes setDictionary:@{
                                          @"upce": AVMetadataObjectTypeUPCECode,
@@ -58,75 +58,75 @@ RCT_EXPORT_MODULE();
                                          @"qr": AVMetadataObjectTypeQRCode,
                                          @"aztec": AVMetadataObjectTypeAztecCode
                                          }];
-
+    
     if (&AVMetadataObjectTypeInterleaved2of5Code != NULL) {
         [runtimeBarcodeTypes setObject:AVMetadataObjectTypeInterleaved2of5Code forKey:@"interleaved2of5"];
     }
-
+    
     if(&AVMetadataObjectTypeITF14Code != NULL){
         [runtimeBarcodeTypes setObject:AVMetadataObjectTypeITF14Code forKey:@"itf14"];
     }
-
+    
     if(&AVMetadataObjectTypeDataMatrixCode != NULL){
         [runtimeBarcodeTypes setObject:AVMetadataObjectTypeDataMatrixCode forKey:@"datamatrix"];
     }
-
-
-  return @{
-           @"Aspect": @{
-               @"stretch": @(RCTCameraAspectStretch),
-               @"fit": @(RCTCameraAspectFit),
-               @"fill": @(RCTCameraAspectFill)
-               },
-           @"BarCodeType": runtimeBarcodeTypes,
-           @"Type": @{
-               @"front": @(RCTCameraTypeFront),
-               @"back": @(RCTCameraTypeBack)
-               },
-           @"CaptureMode": @{
-               @"still": @(RCTCameraCaptureModeStill),
-               @"video": @(RCTCameraCaptureModeVideo)
-               },
-           @"CaptureQuality": @{
-               @"low": @(RCTCameraCaptureSessionPresetLow),
-               @"AVCaptureSessionPresetLow": @(RCTCameraCaptureSessionPresetLow),
-               @"medium": @(RCTCameraCaptureSessionPresetMedium),
-               @"AVCaptureSessionPresetMedium": @(RCTCameraCaptureSessionPresetMedium),
-               @"high": @(RCTCameraCaptureSessionPresetHigh),
-               @"AVCaptureSessionPresetHigh": @(RCTCameraCaptureSessionPresetHigh),
-               @"photo": @(RCTCameraCaptureSessionPresetPhoto),
-               @"AVCaptureSessionPresetPhoto": @(RCTCameraCaptureSessionPresetPhoto),
-               @"480p": @(RCTCameraCaptureSessionPreset480p),
-               @"AVCaptureSessionPreset640x480": @(RCTCameraCaptureSessionPreset480p),
-               @"720p": @(RCTCameraCaptureSessionPreset720p),
-               @"AVCaptureSessionPreset1280x720": @(RCTCameraCaptureSessionPreset720p),
-               @"1080p": @(RCTCameraCaptureSessionPreset1080p),
-               @"AVCaptureSessionPreset1920x1080": @(RCTCameraCaptureSessionPreset1080p)
-               },
-           @"CaptureTarget": @{
-               @"memory": @(RCTCameraCaptureTargetMemory),
-               @"disk": @(RCTCameraCaptureTargetDisk),
-               @"temp": @(RCTCameraCaptureTargetTemp),
-               @"cameraRoll": @(RCTCameraCaptureTargetCameraRoll)
-               },
-           @"Orientation": @{
-               @"auto": @(RCTCameraOrientationAuto),
-               @"landscapeLeft": @(RCTCameraOrientationLandscapeLeft),
-               @"landscapeRight": @(RCTCameraOrientationLandscapeRight),
-               @"portrait": @(RCTCameraOrientationPortrait),
-               @"portraitUpsideDown": @(RCTCameraOrientationPortraitUpsideDown)
-               },
-           @"FlashMode": @{
-               @"off": @(RCTCameraFlashModeOff),
-               @"on": @(RCTCameraFlashModeOn),
-               @"auto": @(RCTCameraFlashModeAuto)
-               },
-           @"TorchMode": @{
-               @"off": @(RCTCameraTorchModeOff),
-               @"on": @(RCTCameraTorchModeOn),
-               @"auto": @(RCTCameraTorchModeAuto)
-               }
-           };
+    
+    
+    return @{
+             @"Aspect": @{
+                     @"stretch": @(RCTCameraAspectStretch),
+                     @"fit": @(RCTCameraAspectFit),
+                     @"fill": @(RCTCameraAspectFill)
+                     },
+             @"BarCodeType": runtimeBarcodeTypes,
+             @"Type": @{
+                     @"front": @(RCTCameraTypeFront),
+                     @"back": @(RCTCameraTypeBack)
+                     },
+             @"CaptureMode": @{
+                     @"still": @(RCTCameraCaptureModeStill),
+                     @"video": @(RCTCameraCaptureModeVideo)
+                     },
+             @"CaptureQuality": @{
+                     @"low": @(RCTCameraCaptureSessionPresetLow),
+                     @"AVCaptureSessionPresetLow": @(RCTCameraCaptureSessionPresetLow),
+                     @"medium": @(RCTCameraCaptureSessionPresetMedium),
+                     @"AVCaptureSessionPresetMedium": @(RCTCameraCaptureSessionPresetMedium),
+                     @"high": @(RCTCameraCaptureSessionPresetHigh),
+                     @"AVCaptureSessionPresetHigh": @(RCTCameraCaptureSessionPresetHigh),
+                     @"photo": @(RCTCameraCaptureSessionPresetPhoto),
+                     @"AVCaptureSessionPresetPhoto": @(RCTCameraCaptureSessionPresetPhoto),
+                     @"480p": @(RCTCameraCaptureSessionPreset480p),
+                     @"AVCaptureSessionPreset640x480": @(RCTCameraCaptureSessionPreset480p),
+                     @"720p": @(RCTCameraCaptureSessionPreset720p),
+                     @"AVCaptureSessionPreset1280x720": @(RCTCameraCaptureSessionPreset720p),
+                     @"1080p": @(RCTCameraCaptureSessionPreset1080p),
+                     @"AVCaptureSessionPreset1920x1080": @(RCTCameraCaptureSessionPreset1080p)
+                     },
+             @"CaptureTarget": @{
+                     @"memory": @(RCTCameraCaptureTargetMemory),
+                     @"disk": @(RCTCameraCaptureTargetDisk),
+                     @"temp": @(RCTCameraCaptureTargetTemp),
+                     @"cameraRoll": @(RCTCameraCaptureTargetCameraRoll)
+                     },
+             @"Orientation": @{
+                     @"auto": @(RCTCameraOrientationAuto),
+                     @"landscapeLeft": @(RCTCameraOrientationLandscapeLeft),
+                     @"landscapeRight": @(RCTCameraOrientationLandscapeRight),
+                     @"portrait": @(RCTCameraOrientationPortrait),
+                     @"portraitUpsideDown": @(RCTCameraOrientationPortraitUpsideDown)
+                     },
+             @"FlashMode": @{
+                     @"off": @(RCTCameraFlashModeOff),
+                     @"on": @(RCTCameraFlashModeOn),
+                     @"auto": @(RCTCameraFlashModeAuto)
+                     },
+             @"TorchMode": @{
+                     @"off": @(RCTCameraTorchModeOff),
+                     @"on": @(RCTCameraTorchModeOn),
+                     @"auto": @(RCTCameraTorchModeAuto)
+                     }
+             };
 }
 
 RCT_EXPORT_VIEW_PROPERTY(orientation, NSInteger);
@@ -135,34 +135,34 @@ RCT_EXPORT_VIEW_PROPERTY(onFocusChanged, BOOL);
 RCT_EXPORT_VIEW_PROPERTY(onZoomChanged, BOOL);
 
 RCT_CUSTOM_VIEW_PROPERTY(captureQuality, NSInteger, RCTCamera) {
-  NSInteger quality = [RCTConvert NSInteger:json];
-  NSString *qualityString;
-  switch (quality) {
-    default:
-    case RCTCameraCaptureSessionPresetHigh:
-      qualityString = AVCaptureSessionPresetHigh;
-      break;
-    case RCTCameraCaptureSessionPresetMedium:
-      qualityString = AVCaptureSessionPresetMedium;
-      break;
-    case RCTCameraCaptureSessionPresetLow:
-      qualityString = AVCaptureSessionPresetLow;
-      break;
-    case RCTCameraCaptureSessionPresetPhoto:
-      qualityString = AVCaptureSessionPresetPhoto;
-      break;
-    case RCTCameraCaptureSessionPreset1080p:
-      qualityString = AVCaptureSessionPreset1920x1080;
-      break;
-    case RCTCameraCaptureSessionPreset720p:
-      qualityString = AVCaptureSessionPreset1280x720;
-      break;
-    case RCTCameraCaptureSessionPreset480p:
-      qualityString = AVCaptureSessionPreset640x480;
-      break;
-  }
-
-  [self setCaptureQuality:qualityString];
+    NSInteger quality = [RCTConvert NSInteger:json];
+    NSString *qualityString;
+    switch (quality) {
+        default:
+        case RCTCameraCaptureSessionPresetHigh:
+            qualityString = AVCaptureSessionPresetHigh;
+            break;
+        case RCTCameraCaptureSessionPresetMedium:
+            qualityString = AVCaptureSessionPresetMedium;
+            break;
+        case RCTCameraCaptureSessionPresetLow:
+            qualityString = AVCaptureSessionPresetLow;
+            break;
+        case RCTCameraCaptureSessionPresetPhoto:
+            qualityString = AVCaptureSessionPresetPhoto;
+            break;
+        case RCTCameraCaptureSessionPreset1080p:
+            qualityString = AVCaptureSessionPreset1920x1080;
+            break;
+        case RCTCameraCaptureSessionPreset720p:
+            qualityString = AVCaptureSessionPreset1280x720;
+            break;
+        case RCTCameraCaptureSessionPreset480p:
+            qualityString = AVCaptureSessionPreset640x480;
+            break;
+    }
+    
+    [self setCaptureQuality:qualityString];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(aspect, NSInteger, RCTCamera) {
@@ -185,53 +185,53 @@ RCT_CUSTOM_VIEW_PROPERTY(aspect, NSInteger, RCTCamera) {
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(type, NSInteger, RCTCamera) {
-  NSInteger type = [RCTConvert NSInteger:json];
-
-  self.presetCamera = type;
-  if (self.session.isRunning) {
-    dispatch_async(self.sessionQueue, ^{
-      AVCaptureDevice *currentCaptureDevice = [self.videoCaptureDeviceInput device];
-      AVCaptureDevicePosition position = (AVCaptureDevicePosition)type;
-      AVCaptureDevice *captureDevice = [self deviceWithMediaType:AVMediaTypeVideo preferringPosition:(AVCaptureDevicePosition)position];
-
-      if (captureDevice == nil) {
-        return;
-      }
-
-      self.presetCamera = type;
-
-      NSError *error = nil;
-      AVCaptureDeviceInput *captureDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
-
-      if (error || captureDeviceInput == nil)
-      {
-        NSLog(@"%@", error);
-        return;
-      }
-
-      [self.session beginConfiguration];
-
-      [self.session removeInput:self.videoCaptureDeviceInput];
-
-      if ([self.session canAddInput:captureDeviceInput])
-      {
-        [self.session addInput:captureDeviceInput];
-
-        [NSNotificationCenter.defaultCenter removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:currentCaptureDevice];
-
-        [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(subjectAreaDidChange:) name:AVCaptureDeviceSubjectAreaDidChangeNotification object:captureDevice];
-        self.videoCaptureDeviceInput = captureDeviceInput;
-        [self setFlashMode];
-      }
-      else
-      {
-        [self.session addInput:self.videoCaptureDeviceInput];
-      }
-
-      [self.session commitConfiguration];
-    });
-  }
-  [self initializeCaptureSessionInput:AVMediaTypeVideo];
+    NSInteger type = [RCTConvert NSInteger:json];
+    
+    self.presetCamera = type;
+    if (self.session.isRunning) {
+        dispatch_async(self.sessionQueue, ^{
+            AVCaptureDevice *currentCaptureDevice = [self.videoCaptureDeviceInput device];
+            AVCaptureDevicePosition position = (AVCaptureDevicePosition)type;
+            AVCaptureDevice *captureDevice = [self deviceWithMediaType:AVMediaTypeVideo preferringPosition:(AVCaptureDevicePosition)position];
+            
+            if (captureDevice == nil) {
+                return;
+            }
+            
+            self.presetCamera = type;
+            
+            NSError *error = nil;
+            AVCaptureDeviceInput *captureDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
+            
+            if (error || captureDeviceInput == nil)
+            {
+                NSLog(@"%@", error);
+                return;
+            }
+            
+            [self.session beginConfiguration];
+            
+            [self.session removeInput:self.videoCaptureDeviceInput];
+            
+            if ([self.session canAddInput:captureDeviceInput])
+            {
+                [self.session addInput:captureDeviceInput];
+                
+                [NSNotificationCenter.defaultCenter removeObserver:self name:AVCaptureDeviceSubjectAreaDidChangeNotification object:currentCaptureDevice];
+                
+                [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(subjectAreaDidChange:) name:AVCaptureDeviceSubjectAreaDidChangeNotification object:captureDevice];
+                self.videoCaptureDeviceInput = captureDeviceInput;
+                [self setFlashMode];
+            }
+            else
+            {
+                [self.session addInput:self.videoCaptureDeviceInput];
+            }
+            
+            [self.session commitConfiguration];
+        });
+    }
+    [self initializeCaptureSessionInput:AVMediaTypeVideo];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(flashMode, NSInteger, RCTCamera) {
@@ -242,7 +242,7 @@ RCT_CUSTOM_VIEW_PROPERTY(flashMode, NSInteger, RCTCamera) {
 - (void)setFlashMode {
     AVCaptureDevice *device = [self.videoCaptureDeviceInput device];
     NSError *error = nil;
-
+    
     if (![device hasFlash]) return;
     if (![device lockForConfiguration:&error]) {
         NSLog(@"%@", error);
@@ -464,8 +464,8 @@ RCT_EXPORT_METHOD(hasFlash:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRej
 
 - (void)stopSession {
 #if TARGET_IPHONE_SIMULATOR
-  self.camera = nil;
-  return;
+    self.camera = nil;
+    return;
 #endif
     dispatch_async(self.sessionQueue, ^{
         self.camera = nil;
@@ -484,6 +484,7 @@ RCT_EXPORT_METHOD(hasFlash:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRej
 
 - (void)initializeCaptureSessionInput:(NSString *)type {
     dispatch_async(self.sessionQueue, ^{
+        
         if (type == AVMediaTypeAudio) {
             for (AVCaptureDeviceInput* input in [self.session inputs]) {
                 if ([input.device hasMediaType:AVMediaTypeAudio]) {
@@ -492,51 +493,50 @@ RCT_EXPORT_METHOD(hasFlash:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRej
                 }
             }
         }
-      }
-    }
-
-    [self.session beginConfiguration];
-
-    NSError *error = nil;
-    AVCaptureDevice *captureDevice;
-
-    if (type == AVMediaTypeAudio) {
-      captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-    }
-    else if (type == AVMediaTypeVideo) {
-      captureDevice = [self deviceWithMediaType:AVMediaTypeVideo preferringPosition:self.presetCamera];
-    }
-
-    if (captureDevice == nil) {
-      return;
-    }
-
-    AVCaptureDeviceInput *captureDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
-
-    if (error || captureDeviceInput == nil) {
-      NSLog(@"%@", error);
-      return;
-    }
-
-    if (type == AVMediaTypeVideo) {
-      [self.session removeInput:self.videoCaptureDeviceInput];
-    }
-
-    if ([self.session canAddInput:captureDeviceInput]) {
-      [self.session addInput:captureDeviceInput];
-
-      if (type == AVMediaTypeAudio) {
-        self.audioCaptureDeviceInput = captureDeviceInput;
-      }
-      else if (type == AVMediaTypeVideo) {
-        self.videoCaptureDeviceInput = captureDeviceInput;
-        [self setFlashMode];
-      }
-      [self.metadataOutput setMetadataObjectTypes:self.metadataOutput.availableMetadataObjectTypes];
-    }
-
-    [self.session commitConfiguration];
-  });
+        
+        
+        [self.session beginConfiguration];
+        
+        NSError *error = nil;
+        AVCaptureDevice *captureDevice;
+        
+        if (type == AVMediaTypeAudio) {
+            captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+        }
+        else if (type == AVMediaTypeVideo) {
+            captureDevice = [self deviceWithMediaType:AVMediaTypeVideo preferringPosition:self.presetCamera];
+        }
+        
+        if (captureDevice == nil) {
+            return;
+        }
+        
+        AVCaptureDeviceInput *captureDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
+        
+        if (error || captureDeviceInput == nil) {
+            NSLog(@"%@", error);
+            return;
+        }
+        
+        if (type == AVMediaTypeVideo) {
+            [self.session removeInput:self.videoCaptureDeviceInput];
+        }
+        
+        if ([self.session canAddInput:captureDeviceInput]) {
+            [self.session addInput:captureDeviceInput];
+            
+            if (type == AVMediaTypeAudio) {
+                self.audioCaptureDeviceInput = captureDeviceInput;
+            }
+            else if (type == AVMediaTypeVideo) {
+                self.videoCaptureDeviceInput = captureDeviceInput;
+                [self setFlashMode];
+            }
+            [self.metadataOutput setMetadataObjectTypes:self.metadataOutput.availableMetadataObjectTypes];
+        }
+        
+        [self.session commitConfiguration];
+    });
 }
 
 - (void)captureStill:(NSInteger)target options:(NSDictionary *)options resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject
@@ -1013,15 +1013,15 @@ didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL
 
 - (void)setCaptureQuality:(NSString *)quality
 {
-    #if !(TARGET_IPHONE_SIMULATOR)
-        if (quality) {
-            [self.session beginConfiguration];
-            if ([self.session canSetSessionPreset:quality]) {
-                self.session.sessionPreset = quality;
-            }
-            [self.session commitConfiguration];
+#if !(TARGET_IPHONE_SIMULATOR)
+    if (quality) {
+        [self.session beginConfiguration];
+        if ([self.session canSetSessionPreset:quality]) {
+            self.session.sessionPreset = quality;
         }
-    #endif
+        [self.session commitConfiguration];
+    }
+#endif
 }
 
 @end
