@@ -11,6 +11,40 @@
 #import <ImageIO/ImageIO.h>
 #import "RCTSensorOrientationChecker.h"
 
+@interface RCTConvert (NSSet)
+
++ (NSArray *)barCodeTypes:(id)json;
+
+@end
+
+
+@implementation RCTConvert (NSSet)
+
++ (NSArray *)barCodeTypes:(id)json
+{
+    NSMutableArray *allowedConvertedTypes = [NSMutableArray new];
+    
+    NSDictionary *barCodeMap = [RCTCameraManager new].constantsToExport[@"BarCodeType"];
+    NSArray *barCodes = [RCTConvert NSArray:json];
+    
+    [barCodes enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ([obj isKindOfClass:[NSString class]]) {
+            
+            NSString *type = (NSString *)obj;
+            if ([barCodeMap.allValues containsObject:type]) {
+                [allowedConvertedTypes addObject:type];
+            } else if ([barCodeMap.allKeys containsObject:type]) {
+                [allowedConvertedTypes addObject:barCodeMap[type]];
+            }
+        }
+    }];
+    
+    return allowedConvertedTypes;
+}
+
+@end
+
 @interface RCTCameraManager ()
 
 @property (strong, nonatomic) RCTSensorOrientationChecker * sensorOrientationChecker;
@@ -290,7 +324,7 @@ RCT_CUSTOM_VIEW_PROPERTY(mirrorImage, BOOL, RCTCamera) {
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(barCodeTypes, NSArray, RCTCamera) {
-    self.barCodeTypes = [RCTConvert NSArray:json];
+    self.barCodeTypes = [RCTConvert barCodeTypes:json];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(captureAudio, BOOL, RCTCamera) {
