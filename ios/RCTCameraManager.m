@@ -265,7 +265,7 @@ RCT_CUSTOM_VIEW_PROPERTY(type, NSInteger, RCTCamera) {
             [self.session commitConfiguration];
         });
     }
-    [self initializeCaptureSessionInput:AVMediaTypeVideo];
+    [self initializeCaptureSessionInput:AVMediaTypeVideo completion:nil];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(flashMode, NSInteger, RCTCamera) {
@@ -331,7 +331,7 @@ RCT_CUSTOM_VIEW_PROPERTY(captureAudio, BOOL, RCTCamera) {
     BOOL captureAudio = [RCTConvert BOOL:json];
     if (captureAudio) {
         RCTLog(@"capturing audio");
-        [self initializeCaptureSessionInput:AVMediaTypeAudio];
+        [self initializeCaptureSessionInput:AVMediaTypeAudio completion:nil];
     }
 }
 
@@ -516,7 +516,7 @@ RCT_EXPORT_METHOD(hasFlash:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRej
     });
 }
 
-- (void)initializeCaptureSessionInput:(NSString *)type {
+- (void)initializeCaptureSessionInput:(NSString *)type completion:(void (^) ())completion {
     dispatch_async(self.sessionQueue, ^{
         
         if (type == AVMediaTypeAudio) {
@@ -570,6 +570,10 @@ RCT_EXPORT_METHOD(hasFlash:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRej
         }
         
         [self.session commitConfiguration];
+        
+        if (completion) {
+            completion();
+        }
     });
 }
 
@@ -782,7 +786,7 @@ RCT_EXPORT_METHOD(hasFlash:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRej
     }
     
     if ([[options valueForKey:@"audio"] boolValue]) {
-        [self initializeCaptureSessionInput:AVMediaTypeAudio];
+        [self initializeCaptureSessionInput:AVMediaTypeAudio completion:nil];
     }
     
     Float64 totalSeconds = [[options valueForKey:@"totalSeconds"] floatValue];

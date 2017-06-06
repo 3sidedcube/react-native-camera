@@ -70,8 +70,9 @@
     self.bridge = bridge;
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchToZoomRecognizer:)];
     [self addGestureRecognizer:pinchGesture];
-    [self.manager initializeCaptureSessionInput:AVMediaTypeVideo];
-    [self.manager startSession];
+    [self.manager initializeCaptureSessionInput:AVMediaTypeVideo completion:^{
+        [self.manager startSession];
+    }];
     _multipleTouches = NO;
     _onFocusChanged = NO;
     _defaultOnFocusComponent = YES;
