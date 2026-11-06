@@ -15,8 +15,8 @@
   "devDependencies": {
     "@commitlint/cli": "^6.1.0",
     "@commitlint/config-conventional": "^6.1.0",
-    "babel-eslint": "^8.2.1",
-    "eslint": "^4.17.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^10.14.0",
     "eslint-plugin-flowtype": "^2.46.2",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-react": "^7.6.1",
@@ -24,13 +24,13 @@
     "generate-changelog": "1.7.0",
     "husky": "^0.14.3",
     "idx": "2.2.0",
-    "lint-staged": "^7.0.0",
-    "minimist": "1.2.0",
-    "pre-commit": "^1.2.2",
+    "lint-staged": "^17.6.0",
+    "minimist": "1.2.8",
+    "pre-commit": "^2.0.0",
     "prettier": "^1.12.0",
     "react": "16.3.1",
-    "react-native": "^0.55.2",
-    "simple-git": "1.89.0"
+    "react-native": "^0.88.1",
+    "simple-git": "4.0.1"
   },
   "homepage": "https://github.com/react-native-community/react-native-camera",
   "keywords": [
